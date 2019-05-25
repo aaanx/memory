@@ -2,6 +2,7 @@ var elementsNumber = 16;
 var wrapper = document.querySelector('.wrapper');
 var element = document.createElement('div');
 var allDivs = document.querySelectorAll('div.box');
+var gameOver = document.querySelector('.gameover');
 
 // Tworzenie pojedynczego diva
 function createElement() {
@@ -123,35 +124,77 @@ displayImages();
 
 //sprawdzanie elementów
 
-function checkIfPair(a) {
-    console.log(a);
-
-}
-
 // pokaż img
 let clickCounter = 0;
-var clickedImages = [];
+var clickedImgObjects = [];
+var clickedImg = [];
+var flag = false;
 
-function onClick(e) {
-    console.log(e);
-    if (clickCounter <= 1) {
-        var clickedImage = e.firstChild;
-        console.log(e.firstChild);
-        clickedImages.push(clickedImage);
-        clickedImage.classList.toggle('show');
-        checkIfPair(clickedImages);
+function hideImages(img1, img2) {
+    img1.classList.remove("show");
+    img2.classList.remove("show");
+    flag = false;
+}
+
+function checkIfPair(divBox) {
+
+    if (clickedImgObjects[0].id != clickedImgObjects[1].id) {
+        setTimeout(hideImages.bind(this, clickedImg[0], clickedImg[1]), 1000);
+        clickCounter = 0;
+        flag = true;
     } else {
-        return;
+        console.log("ok");
+
+        clickCounter = 0;
     }
-    clickCounter++;
-    console.log(clickCounter);
+
+    if (clickedImgObjects.length == 2 || clickedImg.length == 2) {
+        clickedImgObjects = [];
+        clickedImg = [];
+    }
+
 }
 
 for (let i = 0; i < allDivs.length; i++) {
-    allDivs[i].addEventListener('click', function () {
-        onClick(allDivs[i]);
-    })
+    allDivs[i].addEventListener('click', onClick.bind(this, i))
 }
+
+function onClick(i, e) {
+    if (flag) {
+        return;
+    }
+
+    if (clickedImgObjects.indexOf(images[i]) >= 0) {
+        return;
+    }
+
+    clickedImgObjects.push(images[i]);
+    clickCounter++;
+    if (clickCounter <= 2) {
+        var divBox = e.target;
+        var image = divBox.firstChild;
+
+        image.classList.toggle('show');
+
+        clickedImg.push(image);
+        if (clickedImgObjects.length == 2) {
+            checkIfPair(divBox);
+        }
+    } else {
+        return;
+    }
+
+    checkIfGameOver();
+}
+
+
+function checkIfGameOver() {
+    var allImgs = document.querySelectorAll('.show');
+    if (allImgs.length == elementsNumber) {
+        gameOver.style.visibility = "visible";
+    }
+}
+
 
 
 
