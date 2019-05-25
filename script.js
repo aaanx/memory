@@ -123,35 +123,54 @@ displayImages();
 
 //sprawdzanie elementów
 
-function checkIfPair(a) {
-    console.log(a);
-
-}
-
 // pokaż img
 let clickCounter = 0;
-var clickedImages = [];
+var clickedImgObjects = [];
+var clickedImg = [];
 
-function onClick(e) {
-    console.log(e);
-    if (clickCounter <= 1) {
-        var clickedImage = e.firstChild;
-        console.log(e.firstChild);
-        clickedImages.push(clickedImage);
-        clickedImage.classList.toggle('show');
-        checkIfPair(clickedImages);
+function checkIfPair(divBox, clickedImg) {
+
+    console.log(clickedImg)
+    if (clickedImgObjects[0].id != clickedImgObjects[1].id) {
+        setTimeout(function () {
+            clickedImg[0].classList.remove("show");
+            clickedImg[1].classList.remove("show");
+        }, 1000)
+        clickCounter = 0;
+
+    } else {
+        return
+    }
+
+    if (clickedImgObjects.length == 2) {
+        clickedImgObjects = [];
+    }
+}
+
+
+
+for (let i = 0; i < allDivs.length; i++) {
+    allDivs[i].addEventListener('click', onClick.bind(this, i))
+}
+
+function onClick(i, e) {
+    clickedImgObjects.push(images[i]);
+    clickCounter++;
+    if (clickCounter <= 2) {
+        var divBox = e.target;
+        var image = divBox.firstChild;
+        image.classList.toggle('show');
+        console.log(clickedImgObjects);
+        clickedImg.push(image);
+        if (clickedImgObjects.length == 2) {
+
+            checkIfPair(divBox, clickedImg);
+        }
     } else {
         return;
     }
-    clickCounter++;
-    console.log(clickCounter);
 }
 
-for (let i = 0; i < allDivs.length; i++) {
-    allDivs[i].addEventListener('click', function () {
-        onClick(allDivs[i]);
-    })
-}
 
 
 
