@@ -23,67 +23,67 @@ addElements();
 
 var images = [
     {
-        src: '/img/1.jpg',
+        src: './img/1.jpg',
         id: 1
     },
     {
-        src: '/img/2.jpg',
+        src: './img/2.jpg',
         id: 2
     },
     {
-        src: '/img/3.jpg',
+        src: './img/3.jpg',
         id: 3
     },
     {
-        src: '/img/4.jpg',
+        src: './img/4.jpg',
         id: 4
     },
     {
-        src: '/img/5.jpg',
+        src: './img/5.jpg',
         id: 5
     },
     {
-        src: '/img/6.jpg',
+        src: './img/6.jpg',
         id: 6
     },
     {
-        src: '/img/7.jpg',
+        src: './img/7.jpg',
         id: 7
     },
     {
-        src: '/img/8.jpg',
+        src: './img/8.jpg',
         id: 8
     },
     {
-        src: '/img/9.jpg',
+        src: './img/9.jpg',
         id: 1
     },
     {
-        src: '/img/10.jpg',
+        src: './img/10.jpg',
         id: 8
     },
     {
-        src: '/img/11.jpg',
+        src: './img/11.jpg',
         id: 2
     },
     {
-        src: '/img/12.jpg',
+        src: './img/12.jpg',
         id: 3
     },
     {
-        src: '/img/13.jpg',
+        src: './img/13.jpg',
         id: 4
     },
     {
-        src: '/img/14.jpg',
+        src: './img/14.jpg',
         id: 5
     },
     {
-        src: '/img/15.jpg',
+        src: './img/15.jpg',
         id: 6
     },
     {
-        src: '/img/16.jpg',
+        src: './img/16.jpg',
         id: 7
     }];
 
